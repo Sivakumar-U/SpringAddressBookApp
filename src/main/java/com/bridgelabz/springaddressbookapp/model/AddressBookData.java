@@ -5,7 +5,7 @@ import com.bridgelabz.springaddressbookapp.dto.AddressBookDTO;
 public class AddressBookData {
 
 	private int addressBookId;
-	private String fullName;
+	private String name;
 	private String address;
 
 	public AddressBookData() {
@@ -13,7 +13,7 @@ public class AddressBookData {
 
 	public AddressBookData(int addressBookId, AddressBookDTO addressBookDTO) {
 		this.addressBookId = addressBookId;
-		this.fullName = addressBookDTO.fullName;
+		this.name = addressBookDTO.name;
 		this.address = addressBookDTO.address;
 	}
 
@@ -25,12 +25,12 @@ public class AddressBookData {
 		this.addressBookId = addressBookId;
 	}
 
-	public String getFullName() {
-		return fullName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getAddress() {
@@ -39,6 +39,11 @@ public class AddressBookData {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "AddressBookData [addressBookId=" + addressBookId + ", name=" + name + ", address=" + address + "]";
 	}
 
 }
