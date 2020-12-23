@@ -2,17 +2,16 @@ package com.bridgelabz.springaddressbookapp.dto;
 
 public class AddressBookDTO {
 
-	public String firstName;
-	public String lastName;
+	public String fullName;
+	public String address;
 
-	public AddressBookDTO(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public AddressBookDTO(String fullName, String address) {
+		this.fullName = fullName;
+		this.address = address;
 	}
 
 	@Override
 	public String toString() {
-		return "AddressBookDTO [firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "AddressBookDTO [fullName=" + fullName + ", address=" + address + "]";
 	}
-
 }
