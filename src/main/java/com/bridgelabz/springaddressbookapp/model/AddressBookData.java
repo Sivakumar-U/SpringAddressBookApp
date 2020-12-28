@@ -28,6 +28,10 @@ public @Data class AddressBookData {
 	}
 
 	public AddressBookData(AddressBookDTO addressBookDTO) {
+		this.updateAddressBookData(addressBookDTO);
+	}
+
+	public void updateAddressBookData(AddressBookDTO addressBookDTO) {
 		this.name = addressBookDTO.name;
 		this.phoneNumber = addressBookDTO.phoneNumber;
 		this.address = addressBookDTO.address;

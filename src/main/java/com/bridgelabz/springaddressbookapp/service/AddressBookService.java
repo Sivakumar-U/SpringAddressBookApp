@@ -20,16 +20,14 @@ public class AddressBookService implements IAddressBookService {
 	@Autowired
 	private AddressBookRepository addressBookRepository;
 
-	private List<AddressBookData> addressBookList = new ArrayList<AddressBookData>();
-
 	@Override
 	public List<AddressBookData> getAddressBookData() {
-		return addressBookList;
+		return addressBookRepository.findAll();
 	}
 
 	@Override
 	public AddressBookData getAddressBookById(int contId) {
-		return addressBookList.stream().filter(bookData -> bookData.getAddressBookId() == contId).findFirst()
+		return addressBookRepository.findById(contId)
 				.orElseThrow(() -> new AddressBookException("Addressbook entry Not found"));
 	}
 
@@ -37,7 +35,6 @@ public class AddressBookService implements IAddressBookService {
 	public AddressBookData createAddressBookData(AddressBookDTO addressBookDTO) {
 		AddressBookData bookData = null;
 		bookData = new AddressBookData(addressBookDTO);
-		addressBookList.add(bookData);
 		log.debug("Addressbook Data :" + bookData.toString());
 		return addressBookRepository.save(bookData);
 	}
@@ -45,15 +42,14 @@ public class AddressBookService implements IAddressBookService {
 	@Override
 	public AddressBookData updateAddressBookData(int contId, AddressBookDTO addressBookDTO) {
 		AddressBookData bookData = this.getAddressBookById(contId);
-		bookData.setName(addressBookDTO.name);
-		bookData.setAddress(addressBookDTO.address);
-		addressBookList.set(contId - 1, bookData);
-		return bookData;
+		bookData.updateAddressBookData(addressBookDTO);
+		return addressBookRepository.save(bookData);
 	}
 
 	@Override
 	public void deleteAddressBookData(int contId) {
-		addressBookList.remove(contId - 1);
+		AddressBookData bookData = this.getAddressBookById(contId);
+		addressBookRepository.delete(bookData);
 	}
 
 }
