@@ -17,4 +17,6 @@ public interface IAddressBookService {
 
 	void deleteAddressBookData(int contId);
 
+	List<AddressBookData> getAddressBookDataByCity(String city);
+
 }
