@@ -1,5 +1,6 @@
 package com.bridgelabz.springaddressbookapp.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,13 +17,14 @@ public @Data class AddressBookData {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int addressBookId;
-	private String name;
-	private String phoneNumber;
-	private String address;
-	private String city;
-	private String state;
-	private String zip;
+	@Column(name = "id")
+	public int id;
+	public String name;
+	public String address;
+	public String mobile;
+	public String city;
+	public String state;
+	public String zip;
 
 	public AddressBookData() {
 	}
@@ -33,8 +35,8 @@ public @Data class AddressBookData {
 
 	public void updateAddressBookData(AddressBookDTO addressBookDTO) {
 		this.name = addressBookDTO.name;
-		this.phoneNumber = addressBookDTO.phoneNumber;
 		this.address = addressBookDTO.address;
+		this.mobile = addressBookDTO.mobile;
 		this.city = addressBookDTO.city;
 		this.state = addressBookDTO.state;
 		this.zip = addressBookDTO.zip;
